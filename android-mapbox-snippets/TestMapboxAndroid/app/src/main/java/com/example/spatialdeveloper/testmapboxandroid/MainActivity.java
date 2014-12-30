@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
         this.mapView = (MapView)findViewById(R.id.mapview);
 
         //set the map tile
-        this.mapView.setTileSource(new MapboxTileLayer("YOUR-MAP-ID-GOES-HERE.map-4o51gab2"));
+        this.mapView.setTileSource(new MapboxTileLayer("YOUR-MAPBOX-MAPID-HERE.map-4o51gab2"));
 
         //add marker of Seattle
         LatLng seattleCoordinate = new LatLng(47.606209, -122.332071);
