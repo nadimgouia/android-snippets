@@ -3,7 +3,7 @@ android-mapbox-snippets
 
 ####Description
 
-This repo simply contains notes for setting up an Android Studio project using the Mapbox Android SDK.
+This repo simply contains notes for setting up an Android Studio project using the [Mapbox Android SDK](https://www.mapbox.com/mapbox-android-sdk/).
 
 ####Android Studio Project Setup
 
