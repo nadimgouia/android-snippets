@@ -11,7 +11,7 @@ Extending the Navigation Drawer Activity Template
 
 [Using Google Maps Android API V2](https://github.com/ccabanero/android-snippets/tree/master/android-googlemaps-snippets)
 
-Using the Mapbox Android SDK
+[Using the Mapbox Android SDK](https://github.com/ccabanero/android-snippets/tree/master/android-mapbox-snippets)
 
 Using the OSMDroid mapping library
 
