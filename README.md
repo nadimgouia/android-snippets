@@ -13,7 +13,7 @@ Extending the Navigation Drawer Activity Template
 
 [Using the Mapbox Android SDK](https://github.com/ccabanero/android-snippets/tree/master/android-mapbox-snippets)
 
-Using the OSMDroid mapping library
+[Using the OSMDroid mapping library](https://github.com/ccabanero/android-snippets/tree/master/android-osmdroid-snippets)
 
 ####ListView Patterns
 
