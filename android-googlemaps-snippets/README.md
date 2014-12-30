@@ -1,7 +1,7 @@
 android-googlemaps-snippets
 ===========================
 
-This repo simply contains notes for setting up an Android project to use Google Play Services, create an Google Maps API key, and update the AndroidManifest.xml using __Android Studio__ Release 1.
+This repo simply contains notes for setting up an Android project to use [Google Play Services](https://developers.google.com/maps/documentation/android/), creating a Google Maps Android API key, and updating the AndroidManifest.xml using __Android Studio__ Release 1.
 
 ####Set up Google Play Services in Android Studio
 
