@@ -9,7 +9,7 @@ Extending the Navigation Drawer Activity Template
 
 ####Maps and Location 
 
-Using Google Maps Android API V2
+[Using Google Maps Android API V2](https://github.com/ccabanero/android-snippets/tree/master/android-googlemaps-snippets)
 
 Using the Mapbox Android SDK
 
