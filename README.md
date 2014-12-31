@@ -5,7 +5,7 @@ This repo is simply a collection of various Android code snippets.
 
 ####Android Studio IDE
 
-Extending the Navigation Drawer Activity Template
+[Extending the Navigation Drawer Activity Template with Custom Fragments](https://github.com/ccabanero/android-snippets/tree/master/android-navigationdrawer)
 
 ####Maps and Location 
 
@@ -14,8 +14,6 @@ Extending the Navigation Drawer Activity Template
 [Using the Mapbox Android SDK](https://github.com/ccabanero/android-snippets/tree/master/android-mapbox-snippets)
 
 [Using the OSMDroid mapping library](https://github.com/ccabanero/android-snippets/tree/master/android-osmdroid-snippets)
-
-####ListView Patterns
 
 ####Inter-App Communication
 
