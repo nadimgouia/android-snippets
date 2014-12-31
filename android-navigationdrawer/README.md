@@ -55,7 +55,7 @@ public void onSectionAttached(int number) {
        }
    }
 ````
-4) In app/java/[YourPackageName]/[YourMainActivity].java, when the DrawerListView's adapter is being set ... add references to the string array for each drawer item ...
+4) In app/java/[YourPackageName]/NavigationDrawerFragment.java, when the DrawerListView's adapter is being set ... add references to the string array for each drawer item ...
 
 ````
 	@Override
