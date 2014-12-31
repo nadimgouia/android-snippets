@@ -1,22 +1,12 @@
 package com.example.spatialdeveloper.navigationdrawer;
 
-import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity
@@ -41,7 +31,7 @@ public class MainActivity extends ActionBarActivity
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
-        // Set up the drawer.
+        // Set up the drawer
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -49,11 +39,78 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+        /*
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+        */
+
+
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        Toast toast = null;
+        switch (position) {
+            case 0:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Section1Fragment.newInstance(position + 1))
+                        .commit();
+
+                //TEST
+                toast = Toast.makeText(getApplicationContext(), "section index " + position, Toast.LENGTH_SHORT);
+                toast.show();
+
+                break;
+
+            case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Section2Fragment.newInstance(position + 1))
+                        .commit();
+
+                //TEST
+                toast = Toast.makeText(getApplicationContext(), "section index " + position, Toast.LENGTH_SHORT);
+                toast.show();
+
+                break;
+
+            case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Section3Fragment.newInstance(position + 1))
+                        .commit();
+
+                //TEST
+                toast = Toast.makeText(getApplicationContext(), "section index " + position, Toast.LENGTH_SHORT);
+                toast.show();
+
+                break;
+
+            case 3:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Section4Fragment.newInstance(position + 1))
+                        .commit();
+
+                //TEST
+                toast = Toast.makeText(getApplicationContext(), "section index " + position, Toast.LENGTH_SHORT);
+                toast.show();
+
+                break;
+
+            case 4:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, Section5Fragment.newInstance(position + 1))
+                        .commit();
+
+                //TEST
+                toast = Toast.makeText(getApplicationContext(), "section index " + position, Toast.LENGTH_SHORT);
+                toast.show();
+
+                break;
+
+            default:
+
+                break;
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -66,6 +123,12 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
+                break;
+            case 5:
+                mTitle = getString(R.string.title_section5);
                 break;
         }
     }
@@ -108,18 +171,12 @@ public class MainActivity extends ActionBarActivity
 
     /**
      * A placeholder fragment containing a simple view.
-     */
+     *
     public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
+
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
+
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -144,6 +201,6 @@ public class MainActivity extends ActionBarActivity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
-    }
+    }*/
 
 }

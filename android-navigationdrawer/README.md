@@ -7,79 +7,119 @@ This repo simply contains a sample project and notes for using the Android Studi
 
 ####Drawer Layout Customization Steps
 
-1. Open a new Android Studio project.  When prompted, choose the __Navigation Drawer Activity
-1. Add to app/res/values/strings.xml for new sections (see title_sectionx below)
+1) Open a new Android Studio project.  When prompted, choose the __Navigation Drawer__ Activity.
+
+2) Add to the titles of your drawer list items to __app/res/values/strings.xml__ 
+
+For example ...
  
+````
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WA Invasives</string>
-    <string name="title_section1">Priority Invasive Plants</string>
-    <string name="title_section2">Priority Invasive Animals</string>
-    <string name="title_section3">Report a Sighting</string>
-    <string name="title_section4">Map</string>
-    <string name="title_section5">About WISC</string>
+    <string name="app_name">NavigationDrawer</string>
+    <string name="title_section1">My First Section</string>
+    <string name="title_section2">My Second Section</string>
+    <string name="title_section3">My Third Section</string>
+    <string name="title_section4">My Fourth Section</string>
+    <string name="title_section5">My Fifth Section</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
+````
  
-2. Update onSectionAttached() method in app/java/[package]/MainActivity
- 
+3) Update your main activity's __onSectionAttached()__ method in app/java/[YourPackage]/[YourMainActivity] to switch between your new drawer list items titles.
+
+For example ...
+
+````
 public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-            case 4: //added case
-                mTitle = getString(R.string.title_section4); 
-                break;
-            case 5: //added case
-                mTitle = getString(R.string.title_section5);
-                break;
-        }
+       switch (number) {
+           case 1:
+               mTitle = getString(R.string.title_section1);
+               break;
+           case 2:
+               mTitle = getString(R.string.title_section2);
+               break;
+           case 3:
+               mTitle = getString(R.string.title_section3);
+               break;
+           case 4:
+               mTitle = getString(R.string.title_section4);
+               break;
+           case 5:
+               mTitle = getString(R.string.title_section5);
+               break;
+       }
+   }
+````
+4) In app/java/[YourPackageName]/[YourMainActivity].java, when the DrawerListView's adapter is being set ... add references to the string array for each drawer item ...
+
+````
+	@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mDrawerListView = (ListView) inflater.inflate(
+                R.layout.fragment_navigation_drawer, container, false);
+        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItem(position);
+            }
+        });
+        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                getActionBar().getThemedContext(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                
+                //UPDATE HERE....
+                new String[]{
+                        getString(R.string.title_section1),
+                        getString(R.string.title_section2),
+                        getString(R.string.title_section3),
+                        getString(R.string.title_section4),
+                        getString(R.string.title_section5)
+                }));
+        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+        return mDrawerListView;
     }
+````
+
+
+5) When user taps on a drawer list item, we will replace the Fragment inside the FrameLayout with our custom Fragment classes using the following steps ...
  
-3. For each menu item, when tapped, you want to replace with a new Fragment class.  Thus, do the following...
+* Create a new Fragment class for each drawer item using the code below as a general template ... 
  
-a. create a new Fragment class for each drawer item - with the following template below (e.g. invasive plant fragment)
- 
-public class PlantFragment extends Fragment {
- 
+````
+public class Section1Fragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
- 
+
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static PlantFragment newInstance(int sectionNumber) {
-        PlantFragment fragment = new PlantFragment();
+    public static Section1Fragment newInstance(int sectionNumber) {
+        Section1Fragment fragment = new Section1Fragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
- 
-    public PlantFragment() {
-    }
- 
+
+    public Section1Fragment() {}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_plant, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_section1, container, false);
         return rootView;
     }
- 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -87,12 +127,16 @@ public class PlantFragment extends Fragment {
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 }
+
+````
+ * In app/java/[YourPackageName]/[YourMainActivity].java, remove the class declaration for the __PlaceholderFragment__.  We are no longer going to use the PlaceholderFragment class.
  
-b. In app/java/<package>/MainActivity.java, update the onNavigationDrawerItemSelected() callback method ...  for example ...
+ * In app/java/[YourPackageName]/[YourMainActivity].java, update the __onNavigationDrawerItemSelected()__ callback method to replace the fragment based on the position of the drawer list item the user tapped ...
  
+ ````
     @Override
     public void onNavigationDrawerItemSelected(int position) {
- 
+
         /*
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -100,39 +144,42 @@ b. In app/java/<package>/MainActivity.java, update the onNavigationDrawerItemSel
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
         */
- 
-        FragmentManager fragmentManager = getFragmentManager();
+
+
+        android.app.FragmentManager fragmentManager = getFragmentManager();
         Toast toast = null;
         switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlantFragment.newInstance(position + 1))
+                        .replace(R.id.container, Section1Fragment.newInstance(position + 1))
                         .commit();
- 
+
                 //TEST
                 toast = Toast.makeText(getApplicationContext(), "index " + position, Toast.LENGTH_SHORT);
                 toast.show();
- 
+
                 break;
- 
+
             case 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, AnimalFragment.newInstance(position + 1))
+                        .replace(R.id.container, Section2Fragment.newInstance(position + 1))
                         .commit();
- 
+
                 //TEST
                 toast = Toast.makeText(getApplicationContext(), "index " + position, Toast.LENGTH_SHORT);
                 toast.show();
- 
+
                 break;
- 
+
             default:
- 
+
                 break;
         }
     }
-    
+ ````
+ 
 ####Connect
+
 * Twitter: [@clintcabanero](http://twitter.com/clintcabanero)
 * GitHub: [ccabanero](http:///github.com/ccabanero)
 
