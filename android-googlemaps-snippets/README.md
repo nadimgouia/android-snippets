@@ -32,6 +32,12 @@ Then generate a debug key ...
 keytool -genkey -v -keystore ~/.android/debug.keystore -alias androiddebugkey -validity 10000 -storepass android -keypass android
 ````
 
+Alternatively, generate a release key ...
+
+````
+keytool -genkey -v -keystore ~/.android/release.keystore -alias androidreleasekey -validity 10000 -storepass android -keypass android
+````
+
 Then view the generated key ...
 
 ````
@@ -57,7 +63,7 @@ d) After submitting, your App's Google Maps API key will be generated.
 
 ####Adding the Google Maps API Key and Permissions to the AndroidManifest.xml
 
-1) In Android Studio, open your application's AndroidManifest.xml file, and add the following <meta-data> element as a child of the <application> element ...
+1) In Android Studio, open your application's AndroidManifest.xml file, and add the following <meta-data> element as a child of the application element ...
 
 ````
 <meta-data
@@ -65,7 +71,7 @@ d) After submitting, your App's Google Maps API key will be generated.
             android:value="ADD_YOUR_API_KEY_HERE"/>
 ````
 
-2) In your application's AndroidManifest.xml file, add the following <users-permission> elements as a child of the <manifest> element ...
+2) In your application's AndroidManifest.xml file, add the following <users-permission> elements as a child of the manifest element ...
 
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
