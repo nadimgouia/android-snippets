@@ -81,7 +81,7 @@ d) After submitting, your App's Google Maps API key will be generated.
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-3) Finally, in your application's AndroidManifest.xml file, add the following <uses-feature> element as a child of the <manifest> element.
+3) Finally, in your application's AndroidManifest.xml file, add the following <uses-feature> element as a child of the manifest element.
 
 	<!--Open GL ES version 2-->
     <uses-feature
